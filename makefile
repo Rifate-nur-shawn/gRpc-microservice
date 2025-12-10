@@ -1,7 +1,7 @@
 gen:
-	protoc --go_out=. --go-grpc_out=. chat.proto
+	protoc --go_out=pb --go-grpc_out=pb proto/*.proto
 
 clean:
-	rm -rf chat/*.pb.go
+	rm -rf pb/*.pb.go
 run:
-	go run server.go
+	go run main.go
