@@ -1,0 +1,18 @@
+syntax = "proto3";
+package pb;
+
+option go_package = ".";
+
+import "proto/memory_message.proto";
+
+message GpuDetails {
+     string manufacturer = 1;
+     string model = 2;
+     string architecture = 3;
+     double base_clock_ghz = 4;
+     double boost_clock_ghz = 5;
+     Memory memory = 6;
+     uint32 vram_bus_bits = 7;
+     repeated string outputs = 8;
+     bool is_integrated = 9;
+}

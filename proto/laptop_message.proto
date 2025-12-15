@@ -1,0 +1,27 @@
+syntax = "proto3";
+package pb;
+
+option go_package = ".";
+
+import "proto/processor_message.proto";
+import "proto/memory_message.proto";
+import "proto/gpu_message.proto";
+
+message Display {
+     string technology = 1;
+     double size_inch = 2;
+     double refresh_rate_hz = 3;
+     bool touchscreen = 4;
+}
+
+message Laptop {
+     string manufacturer = 1;
+     string model = 2;
+     Cpu cpu = 3;
+     GpuDetails gpu = 4;
+     Memory memory = 5;
+     uint32 ram_gb = 6;
+     Display display = 7;
+     double weight_kg = 8;
+     repeated string ports = 9;
+}
