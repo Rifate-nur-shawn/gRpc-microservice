@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: proto/processor_message.proto
 
-package __
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -199,7 +199,7 @@ const file_proto_processor_message_proto_rawDesc = "" +
 	"\amin_ghz\x18\x03 \x01(\x01R\x06minGhz\x12\x17\n" +
 	"\amax_ghz\x18\x04 \x01(\x01R\x06maxGhz\x12\"\n" +
 	"\x06memory\x18\x05 \x01(\v2\n" +
-	".pb.MemoryR\x06memoryB\x03Z\x01.b\x06proto3"
+	".pb.MemoryR\x06memoryB2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
 	file_proto_processor_message_proto_rawDescOnce sync.Once

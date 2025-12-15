@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: proto/gpu_message.proto
 
-package __
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -145,7 +145,7 @@ const file_proto_gpu_message_proto_rawDesc = "" +
 	".pb.MemoryR\x06memory\x12\"\n" +
 	"\rvram_bus_bits\x18\a \x01(\rR\vvramBusBits\x12\x18\n" +
 	"\aoutputs\x18\b \x03(\tR\aoutputs\x12#\n" +
-	"\ris_integrated\x18\t \x01(\bR\fisIntegratedB\x03Z\x01.b\x06proto3"
+	"\ris_integrated\x18\t \x01(\bR\fisIntegratedB2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
 	file_proto_gpu_message_proto_rawDescOnce sync.Once

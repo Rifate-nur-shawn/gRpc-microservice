@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: proto/keyboard_message.proto
 
-package __
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -80,7 +80,7 @@ const file_proto_keyboard_message_proto_rawDesc = "" +
 	"\x1cproto/keyboard_message.proto\x12\x02pb\"<\n" +
 	"\bKeyboard\x12\x16\n" +
 	"\x06layout\x18\x01 \x01(\tR\x06layout\x12\x18\n" +
-	"\abacklit\x18\x02 \x01(\bR\abacklitB\x03Z\x01.b\x06proto3"
+	"\abacklit\x18\x02 \x01(\bR\abacklitB2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
 	file_proto_keyboard_message_proto_rawDescOnce sync.Once

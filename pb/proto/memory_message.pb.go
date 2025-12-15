@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: proto/memory_message.proto
 
-package __
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -149,7 +149,7 @@ const file_proto_memory_message_proto_rawDesc = "" +
 	"\bKILOBYTE\x10\x03\x12\f\n" +
 	"\bMEGABYTE\x10\x04\x12\f\n" +
 	"\bGIGABYTE\x10\x05\x12\f\n" +
-	"\bTERABYTE\x10\x06B\x03Z\x01.b\x06proto3"
+	"\bTERABYTE\x10\x06B2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
 	file_proto_memory_message_proto_rawDescOnce sync.Once

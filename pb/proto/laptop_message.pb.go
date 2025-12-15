@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: proto/laptop_message.proto
 
-package __
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -219,7 +219,7 @@ const file_proto_laptop_message_proto_rawDesc = "" +
 	"\x06ram_gb\x18\x06 \x01(\rR\x05ramGb\x12%\n" +
 	"\adisplay\x18\a \x01(\v2\v.pb.DisplayR\adisplay\x12\x1b\n" +
 	"\tweight_kg\x18\b \x01(\x01R\bweightKg\x12\x14\n" +
-	"\x05ports\x18\t \x03(\tR\x05portsB\x03Z\x01.b\x06proto3"
+	"\x05ports\x18\t \x03(\tR\x05portsB2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
 	file_proto_laptop_message_proto_rawDescOnce sync.Once

@@ -1,4 +1,4 @@
-module gRpc-microservice
+module github.com/rifate-nur-shawn/gRpc-microservice
 
 go 1.25.2
 
