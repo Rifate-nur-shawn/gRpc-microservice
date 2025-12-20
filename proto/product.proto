@@ -6,6 +6,17 @@ option go_package = "./pb";
 
 // --- The Food (Messages) ---
 
+//*
+ * nested message 
+ */
+message ProductQuality {
+  string color = 1;
+  string weight = 2;
+  ProductQuality message White {
+      string white =3;
+  }
+}
+
 message Product {
   string id = 1;
   string name = 2;
