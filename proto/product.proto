@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package product;
+
+option go_package = "./pb";
+
+// --- The Food (Messages) ---
+
+message Product {
+  string id = 1;
+  string name = 2;
+  double price = 3;
+  string category = 4;
+}
+
+message CreateProductRequest {
+  Product product = 1;
+}
+
+message CreateProductResponse {
+  string id = 1;
+}
+
+message GetProductRequest {
+  string id = 1;
+}
+
+message GetProductResponse {
+  Product product = 1;
+}
+
+// --- The Waiter (Service) ---
+
+service ProductService {
+  // Cook a new product (Create)
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+
+  // Bring me an existing product (Read)
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+}
