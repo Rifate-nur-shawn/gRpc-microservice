@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice";
+
+message HelloRequest {
+  string name = 1;
+  int32  age  = 2;
+}
+
+message HelloResponse {
+  string conf_message = 1;
+}
+
+message UserProfile {
+  string username = 1;
+  string email    = 2;
+}
