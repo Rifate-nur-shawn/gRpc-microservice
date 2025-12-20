@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: proto/main.proto
 
-package gRpc_microservice
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -181,7 +181,7 @@ const file_proto_main_proto_rawDesc = "" +
 	"\fconf_message\x18\x01 \x01(\tR\vconfMessage\"?\n" +
 	"\vUserProfile\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05emailB/Z-github.com/rifate-nur-shawn/gRpc-microserviceb\x06proto3"
+	"\x05email\x18\x02 \x01(\tR\x05emailB2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
 	file_proto_main_proto_rawDescOnce sync.Once
