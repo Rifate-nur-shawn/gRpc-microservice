@@ -4,6 +4,9 @@ package pb;
 
 option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb";
 
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloResponse);
+}
 message HelloRequest {
   string name = 1;
   int32  age  = 2;
