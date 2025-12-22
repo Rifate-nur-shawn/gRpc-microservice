@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package pb;
 
+
 option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb";
 
 service Greeter {

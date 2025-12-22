@@ -1,0 +1,19 @@
+syntax ="proto3";
+
+package pb;
+
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb";
+
+
+service Calculate {
+  rpc Add(AddRequest) returns (AddResponce);
+}
+message AddRequest {
+  int32 a = 1;
+  int32 b=2;
+}
+
+message AddResponce {
+  int32 sum =1;
+}
+
