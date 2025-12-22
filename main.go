@@ -14,8 +14,10 @@ type server struct {
 }
 
 func (s *server) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponce, error) {
+	sum := req.A + req.B
+	log.Fatal("sum: ", sum)
 	return &pb.AddResponce{
-		Sum: req.A + req.B,
+		Sum: sum,
 	}, nil
 }
 
@@ -28,7 +30,7 @@ func main() {
 	}
 	grpcServer := grpc.NewServer()
 
-	pb.RegisterCalculateServer(grpcServer,&server{})
+	pb.RegisterCalculateServer(grpcServer, &server{})
 
 	log.Println("server running on port :", port)
 
