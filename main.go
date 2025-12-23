@@ -12,11 +12,19 @@ import (
 
 type server struct {
 	pb.UnimplementedCalculateServer
+	pb.UnimplementedGreeterServer
+}
+
+func (c *server) Greet(ctx context.Context, req *pb.GreetRequest) (*pb.GreetResponse, error) {
+	return &pb.GreetResponse{
+		Result: req.Input,
+		Year:   req.Year,
+	}, nil
 }
 
 func (s *server) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponce, error) {
 	sum := req.A + req.B
-	 log.Println("sum: ", sum)
+	log.Println("sum: ", sum)
 	return &pb.AddResponce{
 		Sum: sum,
 	}, nil
@@ -42,6 +50,7 @@ func main() {
 	grpcServer := grpc.NewServer(grpc.Creds(creds))
 
 	pb.RegisterCalculateServer(grpcServer, &server{})
+	pb.RegisterGreeterServer(grpcServer, &server{})
 
 	log.Println("server running on port :", port)
 

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb";
+
+// Service definition
+service Greeter {
+     // Sends a greeting
+     rpc Greet(GreetRequest) returns (GreetResponse);
+}
+
+// The request message containing the user's name and a year
+message GreetRequest {
+  string input = 1;
+  int32 year = 2;
+}
+
+// The response message containing the greeting text and the year
+message GreetResponse {
+  string result = 1;
+  int32 year = 2;
+}

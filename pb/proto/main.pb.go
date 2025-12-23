@@ -181,8 +181,8 @@ const file_proto_main_proto_rawDesc = "" +
 	"\fconf_message\x18\x01 \x01(\tR\vconfMessage\"?\n" +
 	"\vUserProfile\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email2:\n" +
-	"\aGreeter\x12/\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email2>\n" +
+	"\vMainService\x12/\n" +
 	"\bSayHello\x12\x10.pb.HelloRequest\x1a\x11.pb.HelloResponseB2Z0github.com/rifate-nur-shawn/gRpc-microservice/pbb\x06proto3"
 
 var (
@@ -204,8 +204,8 @@ var file_proto_main_proto_goTypes = []any{
 	(*UserProfile)(nil),   // 2: pb.UserProfile
 }
 var file_proto_main_proto_depIdxs = []int32{
-	0, // 0: pb.Greeter.SayHello:input_type -> pb.HelloRequest
-	1, // 1: pb.Greeter.SayHello:output_type -> pb.HelloResponse
+	0, // 0: pb.MainService.SayHello:input_type -> pb.HelloRequest
+	1, // 1: pb.MainService.SayHello:output_type -> pb.HelloResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
