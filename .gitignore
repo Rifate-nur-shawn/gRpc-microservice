@@ -1,3 +1,5 @@
 .vscode
+
+# TLS certificates
 cert.pem
 key.pem
