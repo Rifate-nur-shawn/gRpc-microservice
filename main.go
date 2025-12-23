@@ -6,6 +6,7 @@ import (
 	"net"
 
 	pb "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto"
+	fw "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/farewell"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
@@ -13,12 +14,24 @@ import (
 type server struct {
 	pb.UnimplementedCalculateServer
 	pb.UnimplementedGreeterServer
+	fw.UnimplementedFarewellServer
+}
+
+func (f *server) Fare(ctx context.Context, req *fw.FarewellRequest) (*fw.FarewellResponse, error) {
+	lastmessage := req.Name
+	log.Println("last message", lastmessage)
+	return &fw.FarewellResponse{
+		Message: lastmessage,
+	}, nil
 }
 
 func (c *server) Greet(ctx context.Context, req *pb.GreetRequest) (*pb.GreetResponse, error) {
+	result := req.Input
+	year := req.Year
+	log.Println("Name: ", result, "Year", year)
 	return &pb.GreetResponse{
-		Result: req.Input,
-		Year:   req.Year,
+		Result: result,
+		Year:   year,
 	}, nil
 }
 
@@ -51,6 +64,7 @@ func main() {
 
 	pb.RegisterCalculateServer(grpcServer, &server{})
 	pb.RegisterGreeterServer(grpcServer, &server{})
+	fw.RegisterFarewellServer(grpcServer, &server{})
 
 	log.Println("server running on port :", port)
 

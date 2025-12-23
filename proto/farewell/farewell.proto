@@ -1,0 +1,16 @@
+syntax = "proto3";
+package pb;
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb";
+
+// Service definition
+service Farewell {
+     // Sends a farewell message
+  rpc Fare(FarewellRequest) returns (FarewellResponse);
+}
+message FarewellRequest {
+  string name = 1;
+
+}
+message FarewellResponse {
+  string message = 1;
+}
