@@ -43,6 +43,12 @@ func (s *server) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponce, 
 	}, nil
 }
 
+// func(s *server) Add(ctx context.Context , req *pb.AddRequest)(*pb.AddResponse,error){
+// 	return &pb.AddResponse{
+// 		Result: req.A+req.B,
+// 	},nil
+// }
+
 func main() {
 
 	cert := "cert.pem"
