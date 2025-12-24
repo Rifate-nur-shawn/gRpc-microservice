@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package calculate;
+
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb" ;
+//
+service Calculator {
+     //
+  rpc Adder(AddRequest)returns (AddResponse);
+  //
+  rpc GenarateFibonacci (FibonacciRequest) returns (stream  FibonacciResponse);
+}
+
+message AddRequest {
+     int32 a = 1;
+     int32 b = 2;
+}
+
+message AddResponse {
+     int32 result =1;
+}
+
+message FibonacciRequest {
+      int32 n = 1;
+}
+
+message FibonacciResponse {
+      int32 value = 1;
+}
