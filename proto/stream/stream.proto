@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package calculate;
 
-option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb" ;
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb/stream";
+
 //
 service Calculator {
      //
