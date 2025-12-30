@@ -4,9 +4,11 @@ import (
 	"context"
 	"log"
 	"net"
+	"time"
 
 	pb "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto"
 	fw "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/farewell"
+	cal "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/stream"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
@@ -15,6 +17,27 @@ type server struct {
 	pb.UnimplementedCalculateServer
 	pb.UnimplementedGreeterServer
 	fw.UnimplementedFarewellServer
+}
+
+type server1 struct {
+	cal.UnimplementedCalculatorServer
+}
+
+func (s *server1) GenarateFibonacci(req *cal.FibonacciRequest, stream cal.Calculator_GenarateFibonacciServer) error {
+	n := req.N
+	a, b := 0, 1
+	for i := 0; i < int(n); i++ {
+		err := stream.Send(&cal.FibonacciResponse{
+			Value: int32(a),
+		})
+
+		if err != nil {
+			return err
+		}
+		a, b = b, a+b
+		time.Sleep(time.Second)
+	}
+	return nil
 }
 
 func (f *server) Fare(ctx context.Context, req *fw.FarewellRequest) (*fw.FarewellResponse, error) {
@@ -71,6 +94,7 @@ func main() {
 	pb.RegisterCalculateServer(grpcServer, &server{})
 	pb.RegisterGreeterServer(grpcServer, &server{})
 	fw.RegisterFarewellServer(grpcServer, &server{})
+	cal.RegisterCalculatorServer(grpcServer, &server1{})
 
 	log.Println("server running on port :", port)
 
