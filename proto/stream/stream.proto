@@ -10,6 +10,8 @@ service StreamCalculator {
   rpc Adder(AddRequest)returns (AddResponse);
   // Server Streaming RPC
   rpc GenarateFibonacci (FibonacciRequest) returns (stream  FibonacciResponse);
+  //client side streams
+  rpc SendNumbers (stream NumberRequest) returns (NumberResponse);
 }
 
 message AddRequest {
@@ -28,3 +30,13 @@ message FibonacciRequest {
 message FibonacciResponse {
       int32 value = 1;
 }
+
+message NumberRequest{
+      int32 number= 1;
+}
+
+message NumberResponse{
+      int32 sunber = 1;
+      int32 sum = 2;
+}
+
