@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package calculate;
+package stream;
 
 option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb/stream";
 
-//
-service Calculator {
-     //
+// Server Streaming Calculator Service
+service StreamCalculator {
+  // Unary RPC
   rpc Adder(AddRequest)returns (AddResponse);
-  //
+  // Server Streaming RPC
   rpc GenarateFibonacci (FibonacciRequest) returns (stream  FibonacciResponse);
 }
 
