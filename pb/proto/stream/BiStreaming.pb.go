@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: proto/stream/BiStreaming.proto
 
-package calculate
+package stream
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -312,11 +312,108 @@ func (x *BiResponse) GetResult() int32 {
 	return 0
 }
 
+// --- Messages for SendNumbers ---
+type NumberRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Number        int32                  `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NumberRequest) Reset() {
+	*x = NumberRequest{}
+	mi := &file_proto_stream_BiStreaming_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NumberRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NumberRequest) ProtoMessage() {}
+
+func (x *NumberRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_stream_BiStreaming_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NumberRequest.ProtoReflect.Descriptor instead.
+func (*NumberRequest) Descriptor() ([]byte, []int) {
+	return file_proto_stream_BiStreaming_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *NumberRequest) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+type NumberResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sunber        int32                  `protobuf:"varint,1,opt,name=sunber,proto3" json:"sunber,omitempty"`
+	Sum           int32                  `protobuf:"varint,2,opt,name=sum,proto3" json:"sum,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NumberResponse) Reset() {
+	*x = NumberResponse{}
+	mi := &file_proto_stream_BiStreaming_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NumberResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NumberResponse) ProtoMessage() {}
+
+func (x *NumberResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_stream_BiStreaming_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NumberResponse.ProtoReflect.Descriptor instead.
+func (*NumberResponse) Descriptor() ([]byte, []int) {
+	return file_proto_stream_BiStreaming_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *NumberResponse) GetSunber() int32 {
+	if x != nil {
+		return x.Sunber
+	}
+	return 0
+}
+
+func (x *NumberResponse) GetSum() int32 {
+	if x != nil {
+		return x.Sum
+	}
+	return 0
+}
+
 var File_proto_stream_BiStreaming_proto protoreflect.FileDescriptor
 
 const file_proto_stream_BiStreaming_proto_rawDesc = "" +
 	"\n" +
-	"\x1eproto/stream/BiStreaming.proto\x12\tcalculate\"(\n" +
+	"\x1eproto/stream/BiStreaming.proto\x12\x06stream\"(\n" +
 	"\n" +
 	"AddRequest\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\x12\f\n" +
@@ -333,12 +430,18 @@ const file_proto_stream_BiStreaming_proto_rawDesc = "" +
 	"\n" +
 	"BiResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x16\n" +
-	"\x06result\x18\x02 \x01(\x05R\x06result2\xd6\x01\n" +
+	"\x06result\x18\x02 \x01(\x05R\x06result\"'\n" +
+	"\rNumberRequest\x12\x16\n" +
+	"\x06number\x18\x01 \x01(\x05R\x06number\":\n" +
+	"\x0eNumberResponse\x12\x16\n" +
+	"\x06sunber\x18\x01 \x01(\x05R\x06sunber\x12\x10\n" +
+	"\x03sum\x18\x02 \x01(\x05R\x03sum2\x84\x02\n" +
 	"\n" +
-	"Calculator\x126\n" +
-	"\x05Adder\x12\x15.calculate.AddRequest\x1a\x16.calculate.AddResponse\x12P\n" +
-	"\x11GenarateFibonacci\x12\x1b.calculate.FibonacciRequest\x1a\x1c.calculate.FibonacciResponse0\x01\x12>\n" +
-	"\vBiStreaming\x12\x14.calculate.BiRequest\x1a\x15.calculate.BiResponse(\x010\x01BIZGgithub.com/rifate-nur-shawn/gRpc-microservice/pb/proto/stream/calculateb\x06proto3"
+	"Calculator\x120\n" +
+	"\x05Adder\x12\x12.stream.AddRequest\x1a\x13.stream.AddResponse\x12J\n" +
+	"\x11GenarateFibonacci\x12\x18.stream.FibonacciRequest\x1a\x19.stream.FibonacciResponse0\x01\x128\n" +
+	"\vBiStreaming\x12\x11.stream.BiRequest\x1a\x12.stream.BiResponse(\x010\x01\x12>\n" +
+	"\vSendNumbers\x12\x15.stream.NumberRequest\x1a\x16.stream.NumberResponse(\x01B?Z=github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/streamb\x06proto3"
 
 var (
 	file_proto_stream_BiStreaming_proto_rawDescOnce sync.Once
@@ -352,24 +455,28 @@ func file_proto_stream_BiStreaming_proto_rawDescGZIP() []byte {
 	return file_proto_stream_BiStreaming_proto_rawDescData
 }
 
-var file_proto_stream_BiStreaming_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_proto_stream_BiStreaming_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_proto_stream_BiStreaming_proto_goTypes = []any{
-	(*AddRequest)(nil),        // 0: calculate.AddRequest
-	(*AddResponse)(nil),       // 1: calculate.AddResponse
-	(*FibonacciRequest)(nil),  // 2: calculate.FibonacciRequest
-	(*FibonacciResponse)(nil), // 3: calculate.FibonacciResponse
-	(*BiRequest)(nil),         // 4: calculate.BiRequest
-	(*BiResponse)(nil),        // 5: calculate.BiResponse
+	(*AddRequest)(nil),        // 0: stream.AddRequest
+	(*AddResponse)(nil),       // 1: stream.AddResponse
+	(*FibonacciRequest)(nil),  // 2: stream.FibonacciRequest
+	(*FibonacciResponse)(nil), // 3: stream.FibonacciResponse
+	(*BiRequest)(nil),         // 4: stream.BiRequest
+	(*BiResponse)(nil),        // 5: stream.BiResponse
+	(*NumberRequest)(nil),     // 6: stream.NumberRequest
+	(*NumberResponse)(nil),    // 7: stream.NumberResponse
 }
 var file_proto_stream_BiStreaming_proto_depIdxs = []int32{
-	0, // 0: calculate.Calculator.Adder:input_type -> calculate.AddRequest
-	2, // 1: calculate.Calculator.GenarateFibonacci:input_type -> calculate.FibonacciRequest
-	4, // 2: calculate.Calculator.BiStreaming:input_type -> calculate.BiRequest
-	1, // 3: calculate.Calculator.Adder:output_type -> calculate.AddResponse
-	3, // 4: calculate.Calculator.GenarateFibonacci:output_type -> calculate.FibonacciResponse
-	5, // 5: calculate.Calculator.BiStreaming:output_type -> calculate.BiResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	0, // 0: stream.Calculator.Adder:input_type -> stream.AddRequest
+	2, // 1: stream.Calculator.GenarateFibonacci:input_type -> stream.FibonacciRequest
+	4, // 2: stream.Calculator.BiStreaming:input_type -> stream.BiRequest
+	6, // 3: stream.Calculator.SendNumbers:input_type -> stream.NumberRequest
+	1, // 4: stream.Calculator.Adder:output_type -> stream.AddResponse
+	3, // 5: stream.Calculator.GenarateFibonacci:output_type -> stream.FibonacciResponse
+	5, // 6: stream.Calculator.BiStreaming:output_type -> stream.BiResponse
+	7, // 7: stream.Calculator.SendNumbers:output_type -> stream.NumberResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -386,7 +493,7 @@ func file_proto_stream_BiStreaming_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_stream_BiStreaming_proto_rawDesc), len(file_proto_stream_BiStreaming_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

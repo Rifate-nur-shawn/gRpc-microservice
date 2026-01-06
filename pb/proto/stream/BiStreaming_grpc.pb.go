@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: proto/stream/BiStreaming.proto
 
-package calculate
+package stream
 
 import (
 	context "context"
@@ -19,22 +19,26 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Calculator_Adder_FullMethodName             = "/calculate.Calculator/Adder"
-	Calculator_GenarateFibonacci_FullMethodName = "/calculate.Calculator/GenarateFibonacci"
-	Calculator_BiStreaming_FullMethodName       = "/calculate.Calculator/BiStreaming"
+	Calculator_Adder_FullMethodName             = "/stream.Calculator/Adder"
+	Calculator_GenarateFibonacci_FullMethodName = "/stream.Calculator/GenarateFibonacci"
+	Calculator_BiStreaming_FullMethodName       = "/stream.Calculator/BiStreaming"
+	Calculator_SendNumbers_FullMethodName       = "/stream.Calculator/SendNumbers"
 )
 
 // CalculatorClient is the client API for Calculator service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Calculator service with multiple streaming patterns
 type CalculatorClient interface {
-	// 1. Unary
+	// 1. Unary RPC
 	Adder(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
-	// 2. Server Streaming
+	// 2. Server Streaming RPC
 	GenarateFibonacci(ctx context.Context, in *FibonacciRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[FibonacciResponse], error)
 	// 3. Bidirectional Streaming (Both sides stream)
-	// Notice the 'stream' keyword is on BOTH sides
 	BiStreaming(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[BiRequest, BiResponse], error)
+	// 4. Client Streaming RPC
+	SendNumbers(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[NumberRequest, NumberResponse], error)
 }
 
 type calculatorClient struct {
@@ -87,17 +91,33 @@ func (c *calculatorClient) BiStreaming(ctx context.Context, opts ...grpc.CallOpt
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Calculator_BiStreamingClient = grpc.BidiStreamingClient[BiRequest, BiResponse]
 
+func (c *calculatorClient) SendNumbers(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[NumberRequest, NumberResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Calculator_ServiceDesc.Streams[2], Calculator_SendNumbers_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[NumberRequest, NumberResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Calculator_SendNumbersClient = grpc.ClientStreamingClient[NumberRequest, NumberResponse]
+
 // CalculatorServer is the server API for Calculator service.
 // All implementations must embed UnimplementedCalculatorServer
 // for forward compatibility.
+//
+// Calculator service with multiple streaming patterns
 type CalculatorServer interface {
-	// 1. Unary
+	// 1. Unary RPC
 	Adder(context.Context, *AddRequest) (*AddResponse, error)
-	// 2. Server Streaming
+	// 2. Server Streaming RPC
 	GenarateFibonacci(*FibonacciRequest, grpc.ServerStreamingServer[FibonacciResponse]) error
 	// 3. Bidirectional Streaming (Both sides stream)
-	// Notice the 'stream' keyword is on BOTH sides
 	BiStreaming(grpc.BidiStreamingServer[BiRequest, BiResponse]) error
+	// 4. Client Streaming RPC
+	SendNumbers(grpc.ClientStreamingServer[NumberRequest, NumberResponse]) error
 	mustEmbedUnimplementedCalculatorServer()
 }
 
@@ -116,6 +136,9 @@ func (UnimplementedCalculatorServer) GenarateFibonacci(*FibonacciRequest, grpc.S
 }
 func (UnimplementedCalculatorServer) BiStreaming(grpc.BidiStreamingServer[BiRequest, BiResponse]) error {
 	return status.Error(codes.Unimplemented, "method BiStreaming not implemented")
+}
+func (UnimplementedCalculatorServer) SendNumbers(grpc.ClientStreamingServer[NumberRequest, NumberResponse]) error {
+	return status.Error(codes.Unimplemented, "method SendNumbers not implemented")
 }
 func (UnimplementedCalculatorServer) mustEmbedUnimplementedCalculatorServer() {}
 func (UnimplementedCalculatorServer) testEmbeddedByValue()                    {}
@@ -174,11 +197,18 @@ func _Calculator_BiStreaming_Handler(srv interface{}, stream grpc.ServerStream) 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Calculator_BiStreamingServer = grpc.BidiStreamingServer[BiRequest, BiResponse]
 
+func _Calculator_SendNumbers_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(CalculatorServer).SendNumbers(&grpc.GenericServerStream[NumberRequest, NumberResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Calculator_SendNumbersServer = grpc.ClientStreamingServer[NumberRequest, NumberResponse]
+
 // Calculator_ServiceDesc is the grpc.ServiceDesc for Calculator service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Calculator_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "calculate.Calculator",
+	ServiceName: "stream.Calculator",
 	HandlerType: (*CalculatorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -196,6 +226,11 @@ var Calculator_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "BiStreaming",
 			Handler:       _Calculator_BiStreaming_Handler,
 			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "SendNumbers",
+			Handler:       _Calculator_SendNumbers_Handler,
 			ClientStreams: true,
 		},
 	},
