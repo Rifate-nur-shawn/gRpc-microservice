@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: proto/stream/BiStreaming.proto
 
-package stream
+package calculate
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -338,7 +338,7 @@ const file_proto_stream_BiStreaming_proto_rawDesc = "" +
 	"Calculator\x126\n" +
 	"\x05Adder\x12\x15.calculate.AddRequest\x1a\x16.calculate.AddResponse\x12P\n" +
 	"\x11GenarateFibonacci\x12\x1b.calculate.FibonacciRequest\x1a\x1c.calculate.FibonacciResponse0\x01\x12>\n" +
-	"\vBiStreaming\x12\x14.calculate.BiRequest\x1a\x15.calculate.BiResponse(\x010\x01B9Z7github.com/rifate-nur-shawn/gRpc-microservice/pb/streamb\x06proto3"
+	"\vBiStreaming\x12\x14.calculate.BiRequest\x1a\x15.calculate.BiResponse(\x010\x01BIZGgithub.com/rifate-nur-shawn/gRpc-microservice/pb/proto/stream/calculateb\x06proto3"
 
 var (
 	file_proto_stream_BiStreaming_proto_rawDescOnce sync.Once

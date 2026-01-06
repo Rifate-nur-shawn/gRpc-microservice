@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: proto/stream/BiStreaming.proto
 
-package stream
+package calculate
 
 import (
 	context "context"

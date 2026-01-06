@@ -1,19 +1,22 @@
 syntax = "proto3";
 
-package calculate;
+package stream;
 
-option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb/stream";
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/stream";
 
+// Calculator service with multiple streaming patterns
 service Calculator {
-  // 1. Unary
+  // 1. Unary RPC
   rpc Adder(AddRequest) returns (AddResponse);
 
-  // 2. Server Streaming
+  // 2. Server Streaming RPC
   rpc GenarateFibonacci (FibonacciRequest) returns (stream FibonacciResponse);
 
   // 3. Bidirectional Streaming (Both sides stream)
-  // Notice the 'stream' keyword is on BOTH sides
   rpc BiStreaming (stream BiRequest) returns (stream BiResponse);
+
+  // 4. Client Streaming RPC
+  rpc SendNumbers (stream NumberRequest) returns (NumberResponse);
 }
 
 // --- Messages for Adder ---
@@ -44,4 +47,14 @@ message BiRequest {
 message BiResponse {
       string message = 1;
       int32 result = 2;
+}
+
+// --- Messages for SendNumbers ---
+message NumberRequest {
+      int32 number = 1;
+}
+
+message NumberResponse {
+      int32 sunber = 1;
+      int32 sum = 2;
 }

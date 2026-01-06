@@ -324,7 +324,7 @@ const file_proto_stream_stream_proto_rawDesc = "" +
 	"\x10StreamCalculator\x120\n" +
 	"\x05Adder\x12\x12.stream.AddRequest\x1a\x13.stream.AddResponse\x12J\n" +
 	"\x11GenarateFibonacci\x12\x18.stream.FibonacciRequest\x1a\x19.stream.FibonacciResponse0\x01\x12>\n" +
-	"\vSendNumbers\x12\x15.stream.NumberRequest\x1a\x16.stream.NumberResponse(\x01B9Z7github.com/rifate-nur-shawn/gRpc-microservice/pb/streamb\x06proto3"
+	"\vSendNumbers\x12\x15.stream.NumberRequest\x1a\x16.stream.NumberResponse(\x01B?Z=github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/streamb\x06proto3"
 
 var (
 	file_proto_stream_stream_proto_rawDescOnce sync.Once

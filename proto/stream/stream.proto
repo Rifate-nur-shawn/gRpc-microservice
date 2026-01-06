@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package stream;
 
-option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb/stream";
+option go_package = "github.com/rifate-nur-shawn/gRpc-microservice/pb/proto/stream";
 
 // Server Streaming Calculator Service
 service StreamCalculator {
