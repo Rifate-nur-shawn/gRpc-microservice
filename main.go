@@ -23,6 +23,14 @@ type server1 struct {
 	cal.UnimplementedCalculatorServer
 }
 
+func (s *server1) Adder(ctx context.Context, req *cal.AddRequest) (*cal.AddResponse, error) {
+	result := req.A + req.B
+	log.Printf("Adder called with A=%d, B=%d, Result=%d", req.A, req.B, result)
+	return &cal.AddResponse{
+		Result: result,
+	}, nil
+}
+
 func (s *server1) GenarateFibonacci(req *cal.FibonacciRequest, stream cal.Calculator_GenarateFibonacciServer) error {
 	n := req.N
 	a, b := 0, 1
@@ -38,6 +46,33 @@ func (s *server1) GenarateFibonacci(req *cal.FibonacciRequest, stream cal.Calcul
 		time.Sleep(time.Second)
 	}
 	return nil
+}
+
+func (s *server1) BiStreaming(stream cal.Calculator_BiStreamingServer) error {
+	log.Println("BiStreaming started")
+
+	for {
+		req, err := stream.Recv()
+		if err != nil {
+			log.Printf("BiStreaming finished: %v", err)
+			return err
+		}
+
+		log.Printf("Received: message='%s', number=%d", req.Message, req.Number)
+
+		// Process the request and send response
+		response := &cal.BiResponse{
+			Message: "Processed: " + req.Message,
+			Result:  req.Number * 2,
+		}
+
+		if err := stream.Send(response); err != nil {
+			log.Printf("Error sending response: %v", err)
+			return err
+		}
+
+		log.Printf("Sent: message='%s', result=%d", response.Message, response.Result)
+	}
 }
 
 func (f *server) Fare(ctx context.Context, req *fw.FarewellRequest) (*fw.FarewellResponse, error) {
